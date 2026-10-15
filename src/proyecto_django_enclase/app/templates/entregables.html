@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+
+{% block titulo %}Crear Nuevo Entregable{% endblock titulo %}
+
+
+{% block body %}
+<div class="container-box">
+    <h2>Crear Entregable Nuevo</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar Entregable</button>
+    </form>
+    <a href="{% url 'cursos' %}" class="btn-link">⬅ Volver al listado</a>
+</div>
+{% endblock body %}
