@@ -10,12 +10,12 @@ ENV UV_COMPILE_BYTECODE=1 \
     UV_LINK_MODE=copy \
     UV_PYTHON_PREFERENCE=only-system
 
-# 1. Copiar archivos de dependencias
-COPY pyproject.toml uv.lock ./
+# 1. Copiar archivo de dependencias
+COPY pyproject.toml ./
 
-# 2. Instalar dependencias del proyecto (omitiendo el paquete raíz)
+# 2. Instalar dependencias del proyecto (omitiendo el paquete raíz y sin el flag --frozen)[cite: 1]
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --frozen --no-dev --no-install-project
+    uv sync --no-dev --no-install-project
 
 # 3. Copiar el resto del código
 COPY . .
